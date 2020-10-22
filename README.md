@@ -1,24 +1,80 @@
-# use-axios
+# Vue 3 useAxios
 
-## Project setup
-```
-npm install
+Axios wrapper for **Vue 3**. To install it use:
+
+`npm i vue3-use-axios`
+
+The only dependency needed for is axios, please install it first with:
+
+`npm i axios`
+
+## How to use it
+
+Import the composable inside your component like this
+
+```html
+Example.vue
+
+<script>
+import useAxios from 'vue3-use-axios'
+
+export default ({
+  name: 'YourComponent',
+  setup () {
+    const { response, error, loading, uploadProgress, exec } = useAxios()
+
+    const yourFunction = async () => {
+      await exec({
+        url: 'https://rickandmortyapi.com/api/character'
+      })
+
+      // You can validate if an error occurs, set the data where you need to be or not
+      characters.value = await !error.value ? await response.value : null
+    }
+
+    return {
+      // You can return whaever you need or use it inside the component logic
+    }
+  }
+})
+</script>
 ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
+## What the composable provides
+
+This composable gives to you a wrapper to easily use axios and consumes a HTTP Endpoint, by default the method used is **GET** but you can easily override it by giving the method in the **exec** function.
+
+```js
+exec({
+  url: '<YOUR ENDPOINT GOES HERE>',
+  method: 'post',
+  data: {
+    // Whaever you need here
+  }
+})
 ```
 
-### Compiles and minifies for production
-```
-npm run build
+Also, in case you need to upload files using FormData you can do something like this:
+
+```js
+const formData = new FormData()
+
+// You need to set to true the next parameter after the object, with this the wrapper will detect that you are loading files
+exec({
+  url: '<YOUR ENDPOINT GOES HERE>',
+  method: 'post',
+  data: formData
+}, true)
 ```
 
-### Lints and fixes files
-```
-npm run lint
+With the last example you can use the **uploadProgress** property, this will gives you the percentage of the upload in case you need it.
+
+## The **exec**  syntax
+
+Those are the parameters accepted by the **exec** function:
+
+```js
+({ url, method = 'get', data = null, headers = null }, isUploadingFiles = false)
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+---

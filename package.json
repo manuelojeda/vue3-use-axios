@@ -1,17 +1,33 @@
 {
-  "name": "use-axios",
+  "name": "vue3-use-axios",
   "version": "0.1.0",
-  "private": true,
+  "license": "MIT",
+  "main": "dist/vue3-use-axios.umd.js",
+  "unpkg": "dist/vue3-use-axios.min.js",
+  "author": "Manuel Ojeda <manuelojedasistemas@gmail.com>",
+  "description": "An Axios Wrapper for Vue 3",
+  "browser": {
+    "./sfc": "src/composables/useAxios.js"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/manuelojeda/vue3-simple-file-input.git"
+  },
+  "homepage": "https://github.com/manuelojeda/vue3-simple-file-input",
+  "keywords": [
+    "javascript",
+    "vuejs",
+    "vue"
+  ],
   "dependencies": {
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
-    "vue": "^3.0.0",
-    "vue3-simple-file-input": "^1.0.3"
+    "vue": "^3.0.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
