@@ -26,17 +26,14 @@ function useAxios () {
     )
   }
 
-  async function exec ({ url, method = 'get', data = null, headers = null }, isUploadingFiles = false) {
+  async function exec (options, isUploadingFiles = false) {
     loading.value = true
 
     try {
       const instance = !isUploadingFiles ? initWithoutFiles() : initWithFiles()
 
       axiosPromise.value = await instance({
-        url,
-        method,
-        data,
-        headers
+        ...options
       })
       loading.value = false
       hasError.value = false
