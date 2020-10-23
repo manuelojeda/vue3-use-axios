@@ -25,7 +25,8 @@ export default ({
 
     const yourFunction = async () => {
       await exec({
-        url: 'https://rickandmortyapi.com/api/character'
+        url: 'https://rickandmortyapi.com/api/character',
+        method: 'get'
       })
 
       // You can validate if an error occurs, set the data where you need to be or not
@@ -42,7 +43,7 @@ export default ({
 
 ## What the composable provides
 
-This composable gives to you a wrapper to easily use axios and consumes a HTTP Endpoint, by default the method used is **GET** but you can easily override it by giving the method in the **exec** function.
+This composable gives to you a wrapper to easily use axios and consumes a HTTP Endpoint.
 
 ```js
 exec({
@@ -74,7 +75,9 @@ With the last example you can use the **uploadProgress** property, this will giv
 Those are the parameters accepted by the **exec** function:
 
 ```js
-({ url, method = 'get', data = null, headers = null }, isUploadingFiles = false)
+(options, isUploadingFiles = false)
+
+You can send usual the axios configurations through the options object, it will be destructured inside the composable
 ```
 
 ---
